@@ -31,7 +31,7 @@ import UserAccount from "./UserAccount.vue";
 export default {
   data() {
     return {
-      formType: "Sign In",
+      formType: "Sign Up",
       logged: false,
       user: {},
     };

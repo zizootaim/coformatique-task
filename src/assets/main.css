@@ -7,6 +7,9 @@
 
   font-weight: normal;
 }
+body{
+  background: #f0f2f5;
+}
 button{
   border: none;
   outline: none;
@@ -18,7 +21,15 @@ a,
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
 }
-
+.input__field input {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border: none;
+  border-bottom: 1px solid #999;
+  outline: none;
+  background: transparent;
+}
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);

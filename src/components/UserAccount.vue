@@ -9,9 +9,9 @@
           Email : <span>{{ userData.email }}</span>
         </h4>
       </div>
-      
+
       <button @click="signOut">
-        <img src="../assets/images/log-out.png" alt="Log Out">
+        <img src="../assets/images/log-out.png" alt="Log Out" />
       </button>
     </div>
     <div class="write__message">
@@ -23,38 +23,48 @@
     </div>
     <div class="error" v-if="errorMsg">{{ errorMsg }}</div>
     <div class="all__msgs">
-      <div v-if="userMessages.length > 0">
-        <h1>My Messages</h1>
+      <div v-if="allMessages.length > 0">
         <div class="messages">
-          <div class="message" v-for="msg in userMessages" :key="msg.id">
+          <div class="message" v-for="msg in allMessages" :key="msg.id">
             <header>
-              <p class="post__content">{{ msg.content }}</p>
-              <div class="msg__btns">
-                <button @click="deleteMsg(msg.id)">
-                  <i class="far fa-trash-alt"></i>
-                </button>
-                <button @click="editMsg(msg)">
-                  <i class="far fa-edit"></i>
-                </button>
-              </div>
+              <h4>{{ msg.creator }} {{ getYou(msg.user_id) }}</h4>
             </header>
+            <p class="post__content">{{ msg.content }}</p>
+            <div class="msg__btns">
+              <button @click="replyToMsg(msg)">
+                <i class="far fa-comment"></i>
+              </button>
+
+              <button
+                v-if="msg.user_id === userData.id"
+                @click="deleteMsg(msg.id)"
+                class="delete__btn"
+              >
+                <i class="far fa-trash-alt"></i>
+              </button>
+              <button
+                v-if="msg.user_id === userData.id"
+                @click="editMsg(msg)"
+                class="edit__btn"
+              >
+                <i class="far fa-edit"></i>
+              </button>
+            </div>
             <div class="reply__wrapper">
-              <button @click="replyToMsg(msg)">Reply</button>
-              <div class="reply__field" :id="msg.id">
-                <input type="text">
+              <div class="reply__field input__field" :id="msg.id">
+                <input
+                  type="text"
+                  placeholder="Your Reply"
+                  @keyup.enter="replyToMsg(msg)"
+                />
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div v-if="otherMessages.length > 0">
-        <h1>Other Messages</h1>
-        <div class="messages">
-          <div class="message" v-for="msg in otherMessages" :key="msg.id">
-            <h4>Creator : {{ msg.creator }}</h4>
-            <header>
-              <p class="post__content">{{ msg.content }}</p>
-            </header>
+            <div class="replies" v-if="msg.replies.length > 0">
+              <div v-for="r in msg.replies" :key="r.id">
+                <span>{{ r.creator }} {{ getYou(r.user_id) }}</span>
+                <p>{{ r.content }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -68,22 +78,23 @@ export default {
   props: ["userData"],
   data() {
     return {
-      user: {},
       message: { content: "" },
       editing: false,
-      otherMessages: [],
+      allMessages: [],
       userMessages: [],
       errorMsg: "",
     };
   },
   mounted() {
-    this.othe;
     this.getMsgs();
   },
 
   methods: {
+    getYou(id) {
+      if (this.userData.id === id) return "(You)";
+    },
     writeMessage: function () {
-      if (this.message) {
+      if (this.message.content) {
         let newMsg = { ...this.message, content: this.message.content },
           method = "PUT";
         if (!this.editing) {
@@ -108,11 +119,7 @@ export default {
     getMsgs() {
       getData("messages")
         .then((data) => {
-          this.userMessages = data.filter((m) => m.user_id == this.userData.id);
-
-          this.otherMessages = data.filter(
-            (m) => m.user_id !== this.userData.id
-          );
+          this.allMessages = data;
         })
         .catch(() => {
           this.errorMsg = "Failed to Load , Please Try again .";
@@ -122,11 +129,36 @@ export default {
       this.message = msg;
       this.editing = true;
     },
-    showReplyField(id){
-
+    showReplyField(id) {
+      const target = document.getElementById(id);
+      target.classList.toggle("show");
     },
-    replyToMsg(msg){
-      console.log(msg);
+    getReplyValue(id) {
+      const target = document.getElementById(id);
+      const value = target.children[0].value;
+      if (value) target.children[0].value = "";
+      return value;
+    },
+    replyToMsg(msg) {
+      this.showReplyField(msg.id);
+      const value = this.getReplyValue(msg.id);
+      if (value) {
+        const newReplies = [
+          ...msg.replies,
+          {
+            id: Date.now(),
+            creator: this.userData.name,
+            user_id: this.userData.id,
+            content: value,
+          },
+        ];
+        const newMsg = { ...msg, replies: newReplies };
+        setData("messages" + "/" + msg.id, "PUT", JSON.stringify(newMsg)).then(
+          () => {
+            this.getMsgs();
+          }
+        );
+      }
     },
     deleteMsg: function (id) {
       setData(`messages/${id}`, "DELETE", "")
@@ -137,16 +169,16 @@ export default {
           this.errorMsg = "Failed to Delete , Please Try again .";
         });
     },
-    signOut(){
-      this.$emit('signOut')
-    }
+    signOut() {
+      this.$emit("signOut");
+    },
   },
 };
 </script>
 <style>
 .all__msgs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
 .message header {
@@ -155,24 +187,28 @@ export default {
   gap: 1rem;
 }
 .msg__btns {
-  flex-basis: 6rem;
+  display: flex;
   justify-self: flex-end;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0.5rem auto;
 }
+
 .msg__btns button {
   margin-left: 0.3rem;
   padding: 0.2rem 0.6rem;
   border-radius: 5px;
   background: none;
 }
-.msg__btns button:first-child {
+.msg__btns .delete__btn {
   color: red;
 }
-.msg__btns button:last-child {
-  color: green;
+.msg__btns .edit__btn {
+  color: blue;
 }
 /* Start */
 .write__message {
-  width: 22rem;
+  width: 50%;
   margin: 1rem auto;
   display: flex;
   flex-direction: column;
@@ -194,13 +230,13 @@ export default {
 .user__data {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
   margin: 1rem 0;
 }
 .user__data h4 span {
   font-weight: 600;
 }
-.user__data button{
+.user__data button {
   width: fit-content;
   background: none;
   display: flex;
@@ -211,38 +247,33 @@ export default {
   height: 1rem;
 }
 .messages {
-  margin-top: 1rem;
+  width: 50%;
+  margin: 1rem auto;
 }
 .message {
   padding: 0.6rem;
   border: 1px solid rgb(195, 195, 195);
+  border-radius: 10px;
   margin-bottom: 0.6rem;
+  background: #fff;
 }
 .reply__wrapper {
   display: flex;
   justify-content: space-between;
   margin-top: 0.5rem;
 }
-.reply__wrapper button {
-  padding: 0.2rem 0.5rem;
-  border: 1px solid #000;
-  outline: none;
-  background: #fff;
-  color: #000;
-  cursor: pointer;
-}
-.reply__wrapper input {
-  padding: 0.2rem 0.5rem;
-  outline: none;
-}
-.reply__field {
-  opacity: 0;
-  transition: 0.3s;
-}
-.reply__field.show {
-  opacity: 1;
+.reply__wrapper {
+  width: 70%;
+  margin: auto;
 }
 
+.reply__field {
+  width: 100%;
+  display: none;
+}
+.reply__field.show {
+  display: block;
+}
 .message h4 {
   font-weight: 600;
 }
@@ -250,12 +281,16 @@ export default {
   padding-left: 0.4rem;
 }
 .replies {
-  padding: 0.5rem;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  margin-top: 0.5rem;
+  width: 90%;
+  margin: 0.3rem auto;
 }
-.replies p:not(.replies p:last-child) {
-  border-bottom: 1px solid;
+.replies div {
+  background: #f0f2f5;
+  padding: 0.6rem;
+  border-radius: 10px;
+  margin-top: 0.4rem;
+}
+.replies div span {
+  font-weight: 600;
 }
 </style>

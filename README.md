@@ -1,19 +1,18 @@
-# Cof-Task
+# Coformatique-Assessment
 
-This template should help get you started developing with Vue 3 in Vite.
+GuesBook App with Vue Js for Frontend and JSON-Server for Backend to store and send data .
 
-## Recommended IDE Setup
+## How to Run the Project
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+### Install Dependencies
 
 ```sh
 npm install
+```
+### Start Backend Server
+
+```sh
+npm start
 ```
 
 ### Compile and Hot-Reload for Development
@@ -27,3 +26,28 @@ npm run dev
 ```sh
 npm run build
 ```
+## Documentation
+
+First the user have to Sign Up to have an account on GuestBook App .
+
+After Signing In with correct email and password , the user will be able to write , edit ,delete his own messages and reply to others .
+
+The user cannot edit or delete others messages .
+
+How to Write a Message :
+-Write your Message in the Textarea whose label is "Write Message".
+-Click on the "Write Message" Button below the Textarea .
+
+How to Edit a Message :
+-Click on the Edit Icon below the Message Content on the left side .
+-Edit Your Message in the Textarea then Click the "ُEdit Message" Button .
+
+How to Delete a Message :
+-Click on the trash Icon below the Message Content in the center .
+
+How to reply to a Message :
+-Click the Reply Icon below the Message Content .
+-Write Your Reply then Press Enter Key .
+
+How To Sign Out :
+-Click On Sign Out Icon below the user data .

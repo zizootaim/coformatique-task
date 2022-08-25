@@ -71,9 +71,7 @@ export default {
       };
       setData("users", "POST", JSON.stringify(newUser))
         .then(() => {
-          this.email = "";
-          this.name = "";
-          this.password = "";
+          this.logIn();
         })
         .catch(() => {
           this.errorMsg = "Failed to Sign Up , Please Try again .";
@@ -89,15 +87,6 @@ h1 {
 .error {
   text-align: center;
   color: red;
-}
-.input__field input {
-  width: 100%;
-  padding: 10px 0;
-  margin: 5px 0;
-  border: none;
-  border-bottom: 1px solid #999;
-  outline: none;
-  background: transparent;
 }
 
 form {

@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "id": 1661355316584,
+      "name": "ziad otaim",
+      "email": "ziad@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": 1661355382900,
+      "name": "ahmed mohamed",
+      "email": "ahmed@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1661355332198,
+      "user_id": 1661355316584,
+      "creator": "ziad otaim",
+      "content": "hello this is my first msg .\ni am editing my first msg .",
+      "replies": [
+        {
+          "id": 1661355411743,
+          "creator": "ahmed mohamed",
+          "user_id": 1661355382900,
+          "content": "hi ziad iam ahmed"
+        },
+        {
+          "id": 1661355447159,
+          "creator": "ziad otaim",
+          "user_id": 1661355316584,
+          "content": "hi ahmed iam ziad"
+        },
+        {
+          "id": 1661429695434,
+          "creator": "ziad otaim",
+          "user_id": 1661355316584,
+          "content": "dfdf"
+        },
+        {
+          "id": 1661429711409,
+          "creator": "ziad otaim",
+          "user_id": 1661355316584,
+          "content": "replied"
+        }
+      ]
+    }
+  ]
+}

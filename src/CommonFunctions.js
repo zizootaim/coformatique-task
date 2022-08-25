@@ -16,7 +16,5 @@ export const setData = async (resource,method,postedData) => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((data) => {
-    console.log(data);
-  });
+  })
 };

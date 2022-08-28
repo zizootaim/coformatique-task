@@ -1,4 +1,4 @@
-# Coformatique-Assessment
+# GuesBook-App
 
 GuesBook App with Vue Js for Frontend and JSON-Server for Backend to store and send data .
 
@@ -12,7 +12,7 @@ npm install
 ### Start Backend Server
 
 ```sh
-npm start
+npm run json-server
 ```
 
 ### Compile and Hot-Reload for Development

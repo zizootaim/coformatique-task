@@ -18,7 +18,7 @@
       <h4>{{ editing ? "Edit" : "Write" }} Message</h4>
       <textarea cols="10" rows="5" v-model="message.content"></textarea>
       <button @click="writeMessage">
-        {{ editing ? "Edit" : "Write" }} Message
+        {{ editing ? "Save" : "Write" }} Message
       </button>
     </div>
     <div class="error" v-if="errorMsg">{{ errorMsg }}</div>

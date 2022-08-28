@@ -1,7 +1,10 @@
 const url = "http://localhost:3000/";
+
+// Get Data from the Server
+
 export const getData = async (resource) => {
   try {
-    const res = await fetch(url+resource);
+    const res = await fetch(url + resource);
     const data = await res.json();
     return data;
   } catch (err) {
@@ -9,12 +12,14 @@ export const getData = async (resource) => {
   }
 };
 
-export const setData = async (resource,method,postedData) => {
+// Send Data to the Server
+
+export const setData = async (resource, method, targetData) => {
   await fetch(url + resource, {
     method: method,
-    body: postedData,
+    body: targetData,
     headers: {
       "Content-Type": "application/json",
     },
-  })
+  });
 };

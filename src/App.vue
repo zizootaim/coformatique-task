@@ -7,9 +7,6 @@
 import Home from "./components/Home.vue";
 
 export default {
-  mounted() {
-    window.location.hash = "";
-  },
   components: {
     Home,
   },

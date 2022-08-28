@@ -4,14 +4,14 @@ GuesBook App with Vue Js for Frontend and JSON-Server for Backend to store and s
 
 ## Screenshots
 
-[![Sign Up]](./src/assets/screenshots/sign-up.jpg)
-[![Sign In]](./src/assets/screenshots/sign-in.jpg)
-[![User Account]](./src/assets/screenshots/user.jpg)
+![Sign Up](./src/assets/screenshots/sign-up.jpg)
+![Sign In](./src/assets/screenshots/sign-in.jpg)
+![User Account](./src/assets/screenshots/user.jpg)
 
 
 ## Demo
 
-[![Watch the video]](https://drive.google.com/file/d/1_JdrLz3DCMMnQUeCBjHIJrECOmkxvycv/view)
+![Watch the video](https://drive.google.com/file/d/1_JdrLz3DCMMnQUeCBjHIJrECOmkxvycv/view)
 
 ## How to Run the Project
 

@@ -1,62 +1,50 @@
 {
   "users": [
     {
-      "id": 1661355316584,
+      "id": 1661678043924,
       "name": "ziad otaim",
       "email": "ziad@gmail.com",
-      "password": "123456"
+      "password": "123"
     },
     {
-      "id": 1661355382900,
+      "id": 1661678100152,
       "name": "ahmed mohamed",
       "email": "ahmed@gmail.com",
-      "password": "123456"
+      "password": "12345"
     }
   ],
   "messages": [
     {
-      "id": 1661355332198,
-      "user_id": 1661355316584,
+      "id": 1661678060604,
+      "user_id": 1661678043924,
       "creator": "ziad otaim",
-      "content": "hello this is my first msg .\ni am editing my first msg .",
+      "content": "first msg . edited .",
       "replies": [
         {
-          "id": 1661355411743,
+          "id": 1661678132711,
           "creator": "ahmed mohamed",
-          "user_id": 1661355382900,
-          "content": "hi ziad iam ahmed"
+          "user_id": 1661678100152,
+          "content": "hi ziad"
         },
         {
-          "id": 1661355447159,
+          "id": 1661678154452,
           "creator": "ziad otaim",
-          "user_id": 1661355316584,
-          "content": "hi ahmed iam ziad"
-        },
-        {
-          "id": 1661429695434,
-          "creator": "ziad otaim",
-          "user_id": 1661355316584,
-          "content": "dfdf"
-        },
-        {
-          "id": 1661429711409,
-          "creator": "ziad otaim",
-          "user_id": 1661355316584,
-          "content": "replied"
+          "user_id": 1661678043924,
+          "content": "hi ahmed how are you >"
         }
       ]
     },
     {
-      "id": 1661539869343,
-      "user_id": 1661355382900,
+      "id": 1661678128252,
+      "user_id": 1661678100152,
       "creator": "ahmed mohamed",
-      "content": "hello this ahmed`s message .\n",
+      "content": "first msg again .",
       "replies": [
         {
-          "id": 1661539911386,
+          "id": 1661678160652,
           "creator": "ziad otaim",
-          "user_id": 1661355316584,
-          "content": "ziad reply ."
+          "user_id": 1661678043924,
+          "content": "welcome"
         }
       ]
     }

@@ -2,6 +2,17 @@
 
 GuesBook App with Vue Js for Frontend and JSON-Server for Backend to store and send data .
 
+## Screenshots
+
+![Sign Up](./src/assets/screenshots/sign-up.jpg)
+![Sign In](./src/assets/screenshots/sign-in.jpg)
+![User Account](./src/assets/screenshots/user.jpg)
+
+
+## Demo
+
+![Watch the video](https://drive.google.com/file/d/1_JdrLz3DCMMnQUeCBjHIJrECOmkxvycv/view)
+
 ## How to Run the Project
 
 ### Install Dependencies
@@ -26,6 +37,21 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## To Improve the Exciting Code
+
+1- Store Data in a Database instead of JSON-Server .
+
+2- Improve the UI of message container .
+
+3- Confirm the user when Deleting a message .
+
+4- Add Some Animations .
+
+## Design Decisions
+
+I have built a simple design based on some examples from social media platforms .
+
 ## Documentation
 
 First the user have to Sign Up to have an account on GuestBook App .
@@ -46,16 +72,8 @@ The user cannot edit or delete others messages .
 
 -Edit Your Message in the Textarea then Click the "ُEdit Message" Button .
 
-### How to Delete a Message :
-
--Click on the trash Icon below the Message Content in the center .
-
 ### How to reply to a Message :
 
 -Click the Reply Icon below the Message Content .
 
 -Write Your Reply then Press Enter Key .
-
-### How To Sign Out :
-
--Click On Sign Out Icon below the user data .

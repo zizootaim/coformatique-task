@@ -12,6 +12,7 @@
 
       <button @click="signOut">
         <img src="../assets/images/log-out.png" alt="Log Out" />
+       <span> Log Out</span>
       </button>
     </div>
     <div class="write__message">
@@ -176,6 +177,11 @@ export default {
 };
 </script>
 <style>
+.user__data button span{
+  font-size: 1rem;
+  margin-left: .3rem;
+}
+
 .all__msgs {
   display: grid;
   grid-template-columns: 1fr;
